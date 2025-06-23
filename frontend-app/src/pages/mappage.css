@@ -53,13 +53,13 @@ form {
   }
   
   .add-review-button {
-    background: var(--blue-color);
-    color: var(--white-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
+      background: var(--blue-color);
+      color: var(--white-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
   }
   
   .add-review-button:hover {
@@ -105,5 +105,12 @@ form {
   .dark .search-box,
   .dark .suggestions-list {
     color: var(--form-color);
+  }
+
+  @media (max-width: 600px) {
+    .add-review-button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
   }
   

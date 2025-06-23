@@ -147,4 +147,86 @@
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 }
+
+/* shadcn style elements */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dialog-content {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  width: 400px;
+  max-width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialog-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.shad-input,
+.shad-textarea {
+  width: 100%;
+  border: 1px solid var(--gray-color);
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.shad-input:focus,
+.shad-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--blue-color);
+  border-color: var(--blue-color);
+}
+
+.star-selector {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.star-icon {
+  cursor: pointer;
+  color: var(--gray-color);
+}
+
+.star-icon.filled {
+  color: var(--star-color);
+}
+
+.new-pin-icon.animate {
+  animation: fadeScale 0.5s ease-in-out;
+}
+
+.submitButton {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--white-color);
+  background-color: var(--red-color);
+  cursor: pointer;
+}
+
+@keyframes fadeScale {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .dialog-content {
+    width: 90%;
+  }
+  .add-review-button {
+    padding: 8px 12px;
+  }
+}
  
