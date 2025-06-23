@@ -138,3 +138,24 @@
   100% { transform: rotate(360deg) }
 }
  
+/* shadcn components */
+.shadcn-card {
+  background-color: var(--white-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadcn-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--gray-color);
+}
+
+.shadcn-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  background-color: rgb(224, 231, 255);
+  color: rgb(55, 65, 81);
+}

@@ -1,39 +1,30 @@
-form {
+.popupForm {
     width: 250px;
-    height: 250px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
     color: var(--form-color);
-  }
-  
-  input {
-    border: none;
-    border-bottom: 1px solid var(--gray-color);
-  }
-  
-  input::placeholder,
-  textarea::placeholder {
+}
+
+.popupForm input,
+.popupForm textarea,
+.popupForm select {
+    border: 1px solid var(--gray-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.popupForm input::placeholder,
+.popupForm textarea::placeholder {
     font-size: 12px;
     color: var(--placeholder-color);
-  }
-  
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-  }
-  
-  textarea {
-    border: none;
-    border-bottom: 1px solid var(--gray-color);
-  }
-  
-  .submitButton {
+}
+
+.popupForm .submitButton {
     border: none;
     padding: 5px;
     border-radius: 5px;
     color: var(--white-color);
     background-color: var(--red-color);
     cursor: pointer;
-  }
+}

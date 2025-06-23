@@ -4,6 +4,10 @@ import { useRef, useState } from "react"
 import apiRequest from '../../../lib/ApiReqest'
 import "./register.css"
 
+import Card from '../../ui/Card'
+import Input from '../../ui/Input'
+import Alert from '../../ui/Alert'
+
 const Register = ({ setShowRegister })=> {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -30,31 +34,33 @@ const Register = ({ setShowRegister })=> {
   }
   return (
     <div className="registerContainer">
-      <div className="logo">
-        <LocationOnIcon className="logoIcon" />
-        <span>Map-Explore</span>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <input autoFocus placeholder="username" ref={usernameRef} />
-        <input type="email" placeholder="email" ref={emailRef} />
-        <input
-          type="password"
-          min="6"
-          placeholder="password"
-          ref={passwordRef}
+      <Card>
+        <div className="logo">
+          <LocationOnIcon className="logoIcon" />
+          <span>Map-Explore</span>
+        </div>
+        <form onSubmit={handleSubmit} className="registerForm">
+          <Input autoFocus placeholder="username" ref={usernameRef} />
+          <Input type="email" placeholder="email" ref={emailRef} />
+          <Input
+            type="password"
+            min="6"
+            placeholder="password"
+            ref={passwordRef}
+          />
+          <button className="registerBtn" type="submit">
+            Register
+          </button>
+          {success && (
+            <Alert>Successfull. You can login now!</Alert>
+          )}
+          {error && <Alert>Something went wrong!</Alert>}
+        </form>
+        <CancelIcon
+          className="registerCancel"
+          onClick={() => setShowRegister(false)}
         />
-        <button className="registerBtn" type="submit">
-          Register
-        </button>
-        {success && (
-          <span className="success">Successfull. You can login now!</span>
-        )}
-        {error && <span className="failure">Something went wrong!</span>}
-      </form>
-      <CancelIcon
-        className="registerCancel"
-        onClick={() => setShowRegister(false)}
-      />
+      </Card>
     </div>
   )
 }
