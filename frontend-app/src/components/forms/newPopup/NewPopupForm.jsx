@@ -1,15 +1,17 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import apiRequest from '../../../lib/ApiReqest'
 import { Card } from '../../ui/Card'
 import { Input } from '../../ui/Input'
+import Textarea from '../../ui/Textarea'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
 
-import {LocationContext} from "../../../context/LocationContext"
+import { LocationContext } from "../../../context/LocationContext"
 import { AuthContext } from "../../../context/AuthContext"
 
 const NewPopupForm = () => {
-
-    const { pins, SetPins,newPlace,SetNewPlace} = useContext(LocationContext)
-    const { currentUser} = useContext(AuthContext)
+    const { pins, SetPins, newPlace, SetNewPlace, SetRecentPinId } = useContext(LocationContext)
+    const { currentUser } = useContext(AuthContext)
 
     const [title, setTitle] = useState(null)
     const [desc, setDesc] = useState(null)
@@ -25,10 +27,10 @@ const NewPopupForm = () => {
             lat: newPlace.lat,
             long: newPlace.long,
         }
-
         try {
             const res = await apiRequest.post("/api/pins", newPin)
             SetPins([...pins, res.data])
+            SetRecentPinId(res.data._id)
             SetNewPlace(null)
         } catch (err) {
             console.log("an error Occured")
@@ -46,24 +48,19 @@ const NewPopupForm = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <label className="text-sm font-medium">Description</label>
-                <textarea
-                    className="w-full rounded-md border px-3 py-2 text-sm"
+                <Textarea
                     placeholder="Say us something about this place."
                     value={desc || ''}
                     onChange={(e) => setDesc(e.target.value)}
                 />
                 <label className="text-sm font-medium">Rating</label>
-                <select
-                    className="w-full rounded-md border px-3 py-2 text-sm"
-                    value={star}
-                    onChange={(e) => setStar(e.target.value)}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <div className="star-selector flex gap-1">
+                    {[1,2,3,4,5].map((i) => (
+                        <span key={i} onClick={() => setStar(i)} style={{ cursor: 'pointer' }}>
+                            {star >= i ? <StarIcon className="star-icon filled text-yellow-400" /> : <StarBorderIcon className="star-icon text-gray-400" />}
+                        </span>
+                    ))}
+                </div>
                 <button
                     type="submit"
                     className="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
