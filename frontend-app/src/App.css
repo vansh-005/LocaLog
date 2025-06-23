@@ -12,6 +12,16 @@
   
 
 }
+.dark {
+  --form-color: rgb(229, 229, 229);
+  --placeholder-color: rgb(170, 170, 170);
+  --gray-color: rgb(70, 70, 70);
+  --white-color: rgb(48, 48, 48);
+  --loader-color: rgb(255, 255, 255);
+  background-color: #121212;
+  color: var(--form-color);
+}
+
 
 .card {
     width: 250px;
