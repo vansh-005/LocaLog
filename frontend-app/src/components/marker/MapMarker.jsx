@@ -1,15 +1,11 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { Marker } from 'react-map-gl'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
-import { LocationContext } from '../../context/LocationContext'
-import { AuthContext } from '../../context/AuthContext'
 
-const MapMarker = () => {
-    const { currentUser } = useContext(AuthContext)
-    const { SetCurrentPlaceId , pins} = useContext(LocationContext)
+const MapMarker = ({ pins, currentUser, setCurrentPlaceId }) => {
 
     const handleMarkerClick = (id) => {
-        SetCurrentPlaceId(id)
+        setCurrentPlaceId(id)
         console.log(`${id}`)
     }
 
