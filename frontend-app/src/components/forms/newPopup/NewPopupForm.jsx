@@ -1,13 +1,16 @@
-import React, { useState, useContext} from 'react'
-import './newpopupform.css'
+import React, { useState, useContext } from 'react'
 import apiRequest from '../../../lib/ApiReqest'
+import Input from '../../ui/Input'
+import Textarea from '../../ui/Textarea'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
 
 import {LocationContext} from "../../../context/LocationContext"
 import { AuthContext } from "../../../context/AuthContext"
 
 const NewPopupForm = () => {
 
-    const { pins, SetPins,newPlace,SetNewPlace} = useContext(LocationContext)
+    const { pins, SetPins,newPlace,SetNewPlace, SetRecentPinId } = useContext(LocationContext)
     const { currentUser} = useContext(AuthContext)
 
     const [title, setTitle] = useState(null)
@@ -28,6 +31,7 @@ const NewPopupForm = () => {
         try {
             const res = await apiRequest.post("/api/pins", newPin)
             SetPins([...pins, res.data])
+            SetRecentPinId(res.data._id)
             SetNewPlace(null)
         } catch (err) {
             console.log("an error Occured")
@@ -38,26 +42,26 @@ const NewPopupForm = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Title</label>
-                <input
+                <Input
                     placeholder="Enter a title"
                     autoFocus
-                    value={title}
+                    value={title || ''}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <label>Description</label>
-                <textarea
+                <Textarea
                     placeholder="Say us something about this place."
-                    value={desc}
+                    value={desc || ''}
                     onChange={(e) => setDesc(e.target.value)}
                 />
                 <label>Rating</label>
-                <select value={star} onChange={(e) => setStar(e.target.value)}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <div className="star-selector">
+                    {[1,2,3,4,5].map((i) => (
+                        <span key={i} onClick={() => setStar(i)}>
+                            {star >= i ? <StarIcon className="star-icon filled" /> : <StarBorderIcon className="star-icon" />}
+                        </span>
+                    ))}
+                </div>
                 <button type="submit" className="submitButton">
                     Add Pin
                 </button>
