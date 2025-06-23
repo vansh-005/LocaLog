@@ -4,6 +4,7 @@ import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './mappage.css'
 import Loader from '../components/ui/Loader' //Loader for suspense
+import BottomNav from '../components/ui/BottomNav'
 import ThemeToggle from '../components/ui/ThemeToggle'
 import MyLocationIcon from '@mui/icons-material/MyLocation'
 import MapMarker from '../components/marker/MapMarker'
@@ -12,6 +13,7 @@ import apiRequest from '../lib/ApiReqest'
 
 import { AuthContext } from "../context/AuthContext"
 import { LocationContext } from "../context/LocationContext"
+
 
 const MarkerPopup = lazy(() => import('../components/popup/MarkerPopup'))
 const UserMarkerPopup = lazy(() => import('../components/popup/UserMarkerPopup'))
@@ -167,6 +169,7 @@ const MapPage = () => {
           <MyLocationIcon style={{ fontSize: 20, color: 'black' }} />
         </div>
       )}
+      <BottomNav />
     </div>
   )
 }
