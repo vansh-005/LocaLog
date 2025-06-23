@@ -4,6 +4,7 @@ import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './mappage.css'
 import Loader from '../components/ui/Loader' //Loader for suspense
+import BottomNav from '../components/ui/BottomNav'
 import MyLocationIcon from '@mui/icons-material/MyLocation'
 import MapMarker from '../components/marker/MapMarker'
 import debounce from 'lodash.debounce' // Import debounce from lodash
@@ -165,6 +166,7 @@ const MapPage = () => {
           <MyLocationIcon style={{ fontSize: 20, color: 'black' }} />
         </div>
       )}
+      <BottomNav />
     </div>
   )
 }
