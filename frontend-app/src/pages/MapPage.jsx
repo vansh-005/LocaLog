@@ -19,7 +19,7 @@ const UserAuthentication = lazy(() => import('../components/authentication/UserA
 
 const MapPage = () => {
   const { currentUser } = useContext(AuthContext)
-  const { pins, SetPins, SetNewPlace } = useContext(LocationContext)
+  const { pins, SetPins, SetNewPlace, SetCurrentPlaceId } = useContext(LocationContext)
   const [viewport, setViewport] = useState({
     latitude: 6.927079,
     longitude: 79.861244,
@@ -141,16 +141,16 @@ const MapPage = () => {
         )}
 
 
+        <MapMarker
+          pins={pins}
+          currentUser={currentUser}
+          setCurrentPlaceId={SetCurrentPlaceId}
+        />
+
         {pins.map((p) => (
-          <React.Fragment key={p._id}>
-            {/* Retrieve all markers on Map */}
-            <MapMarker />
-            {/* Popup on Marker */}
-            <Suspense fallback={<Loader />}>
-              <MarkerPopup
-                p={p} />
-            </Suspense>
-          </React.Fragment>
+          <Suspense fallback={<Loader />} key={p._id}>
+            <MarkerPopup p={p} />
+          </Suspense>
         ))}
 
         {/* User popup creation */}

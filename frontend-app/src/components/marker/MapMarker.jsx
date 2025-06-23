@@ -1,12 +1,12 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { Marker } from 'react-map-gl'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
-import { LocationContext } from '../../context/LocationContext'
 import { AuthContext } from '../../context/AuthContext'
+import { LocationContext } from '../../context/LocationContext'
 
 const MapMarker = () => {
     const { currentUser } = useContext(AuthContext)
-    const { SetCurrentPlaceId , pins, recentPinId } = useContext(LocationContext)
+    const { SetCurrentPlaceId, pins, recentPinId } = useContext(LocationContext)
 
     const handleMarkerClick = (id) => {
         SetCurrentPlaceId(id)
@@ -33,7 +33,6 @@ const MapMarker = () => {
                     />
                 </Marker>
             ))}
-            
         </>
     )
 }
