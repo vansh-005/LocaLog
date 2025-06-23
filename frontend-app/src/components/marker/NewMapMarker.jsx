@@ -5,7 +5,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 const MapMarker = ({ pins, currentUsername, setCurrentPlaceId }) => {
     const handleMarkerClick = (id) => {
         setCurrentPlaceId(id);
-        console.log(`${id}`);
     };
 
     return (

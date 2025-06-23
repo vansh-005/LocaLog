@@ -30,7 +30,7 @@ const NewPopupForm = () => {
             SetPins([...pins, res.data])
             SetNewPlace(null)
         } catch (err) {
-            console.log("an error Occured")
+            console.error(err)
         }
     }
 

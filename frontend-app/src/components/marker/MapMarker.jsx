@@ -10,7 +10,6 @@ const MapMarker = () => {
 
     const handleMarkerClick = (id) => {
         SetCurrentPlaceId(id)
-        console.log(`${id}`)
     }
 
     return (
