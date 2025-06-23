@@ -7,6 +7,7 @@ Map-Explore is a full-stack travel application built using the MERN (MongoDB, Ex
 - Pin visited locations on a map.
 - Add reviews for visited locations.
 - View reviews posted by other users for places of interest.
+- Search nearby pins with `/api/pins/nearby`.
 - User authentication and registration system.
 - Responsive and user-friendly interface.
 
@@ -62,7 +63,8 @@ Map-Explore is a full-stack travel application built using the MERN (MongoDB, Ex
       - Backend
       - `MONGO_URL`: MongoDB connection URI.
         - `PORT`: Port for Backend Server.
-       - `CLIENT_URL`: Frontend Server Url.
+      - `CLIENT_URL`: Frontend Server Url.
+      - `REDIS_URL`: Redis connection string for rate limiter.
 
 5. Start the backend server:
 
@@ -83,6 +85,15 @@ Map-Explore is a full-stack travel application built using the MERN (MongoDB, Ex
     # Start the application
     npm start
     ```
+
+### Demo Data
+
+To seed demo pins for quick testing:
+
+```bash
+cd backend-app
+npm run seed
+```
 
     Open your browser and visit [http://localhost:3000](http://localhost:3000) to view the application.
 

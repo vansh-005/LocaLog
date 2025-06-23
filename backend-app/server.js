@@ -2,6 +2,9 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require('cors')
 const dotenv = require("dotenv")
+const rateLimit = require("express-rate-limit")
+const RedisStore = require("rate-limit-redis")
+const { createClient } = require("redis")
 const pinRoute = require("./routes/pins")
 const userRoute = require("./routes/users")
 
@@ -16,6 +19,19 @@ app.use(cors({ origin: process.env.CLIENT_URL}))
 
 // Parse JSON bodies
 app.use(express.json())
+
+const redisClient = createClient({ url: process.env.REDIS_URL })
+redisClient.connect().catch(console.error)
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new RedisStore({
+        sendCommand: (...args) => redisClient.sendCommand(args)
+    })
+})
+app.use(limiter)
 
 //initialize the port-Enter a port
 const port = process.env.PORT

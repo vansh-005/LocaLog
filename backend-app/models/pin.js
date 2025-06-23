@@ -31,8 +31,22 @@ const PinSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number],
+        required: true
+      }
+    },
   },
   { timestamps: true }
 )
+
+PinSchema.index({ location: '2dsphere' })
 
 module.exports = mongoose.model("pin", PinSchema)
