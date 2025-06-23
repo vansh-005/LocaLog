@@ -1,9 +1,10 @@
 import React, { lazy, useContext } from 'react'
-import { Marker, Popup } from 'react-map-gl'
+import { Marker } from 'react-map-gl'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 
 import {LocationContext} from "../../context/LocationContext"
 import { AuthContext } from "../../context/AuthContext"
+import { Dialog, DialogContent, DialogHeader, DialogBody } from '../ui/Dialog'
 const NewPopupForm = lazy(() => import('../forms/newPopup/NewPopupForm'))
 
 const UserMarkerPopup = () => {
@@ -24,16 +25,14 @@ const UserMarkerPopup = () => {
                             }}
                         />
                     </Marker>
-                    <Popup
-                        latitude={newPlace.lat}
-                        longitude={newPlace.long}
-                        anchor="left"
-                        closeOnClick={false}
-                        onClose={() => SetNewPlace(null)}
-                    >
-                        {/* New popup creation Form */}
-                        <NewPopupForm />
-                    </Popup>
+                    <Dialog open onOpenChange={(open) => !open && SetNewPlace(null)}>
+                        <DialogContent>
+                            <DialogHeader>Add Review</DialogHeader>
+                            <DialogBody>
+                                <NewPopupForm />
+                            </DialogBody>
+                        </DialogContent>
+                    </Dialog>
 
                 </>
             )}

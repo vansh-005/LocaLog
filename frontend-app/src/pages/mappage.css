@@ -52,7 +52,7 @@ form {
     outline: none;
   }
   
-  .add-review-button {  
+  .add-review-button {
     background: #007bff;
     color: white;
     border: none;
@@ -95,5 +95,12 @@ form {
   
   .suggestions-list li:hover {
     background: #f0f0f0;
+  }
+
+  @media (max-width: 600px) {
+    .add-review-button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
   }
   

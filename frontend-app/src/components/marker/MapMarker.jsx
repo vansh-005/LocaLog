@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext'
 
 const MapMarker = () => {
     const { currentUser } = useContext(AuthContext)
-    const { SetCurrentPlaceId , pins} = useContext(LocationContext)
+    const { SetCurrentPlaceId , pins, recentPinId } = useContext(LocationContext)
 
     const handleMarkerClick = (id) => {
         SetCurrentPlaceId(id)
@@ -24,6 +24,7 @@ const MapMarker = () => {
                     onClick={() => handleMarkerClick(p._id)}
                 >
                     <LocationOnIcon
+                        className={recentPinId === p._id ? 'new-pin-icon animate' : ''}
                         style={{
                             fontSize: 40,
                             color: p.username === currentUser ? 'tomato' : 'slateblue',
