@@ -4,7 +4,9 @@ import { useRef, useState , useContext } from "react"
 import apiRequest from '../../../lib/ApiReqest'
 
 import { AuthContext } from '../../../context/AuthContext'
-import "./login.css"
+import { Card } from '../../ui/Card'
+import { Input } from '../../ui/Input'
+import { Alert } from '../../ui/Alert'
 import Swal from 'sweetalert2' //Sweet alert
 
 
@@ -42,26 +44,32 @@ const Login = ({ setShowLogin }) =>{
   }
 
   return (
-    <div className="loginContainer">
-      <div className="logo">
-        <LocationOnIcon className="logoIcon" />
+    <Card className="w-72 relative space-y-4">
+      <div className="flex items-center justify-center gap-1">
+        <LocationOnIcon className="text-red-500" />
         <span>Map-Explore</span>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input autoFocus placeholder="username" ref={usernameRef} />
-        <input
+      <form onSubmit={handleSubmit} className="space-y-2">
+        <Input autoFocus placeholder="username" ref={usernameRef} />
+        <Input
           type="password"
           min="6"
           placeholder="password"
           ref={passwordRef}
         />
-        <button className="loginBtn" type="submit">
+        <button
+          className="w-full rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
+          type="submit"
+        >
           Login
         </button>
-        {error && <span className="failure">Something went wrong!</span>}
+        {error && <Alert title="Error">Something went wrong!</Alert>}
       </form>
-      <CancelIcon className="loginCancel" onClick={() => setShowLogin(false)} />
-    </div>
+      <CancelIcon
+        className="absolute top-2 right-2 cursor-pointer"
+        onClick={() => setShowLogin(false)}
+      />
+    </Card>
   )
 }
 export default Login

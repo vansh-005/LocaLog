@@ -5,6 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './mappage.css'
 import Loader from '../components/ui/Loader' //Loader for suspense
 import BottomNav from '../components/ui/BottomNav'
+import ThemeToggle from '../components/ui/ThemeToggle'
 import MyLocationIcon from '@mui/icons-material/MyLocation'
 import MapMarker from '../components/marker/MapMarker'
 import debounce from 'lodash.debounce' // Import debounce from lodash
@@ -13,13 +14,14 @@ import apiRequest from '../lib/ApiReqest'
 import { AuthContext } from "../context/AuthContext"
 import { LocationContext } from "../context/LocationContext"
 
+
 const MarkerPopup = lazy(() => import('../components/popup/MarkerPopup'))
 const UserMarkerPopup = lazy(() => import('../components/popup/UserMarkerPopup'))
 const UserAuthentication = lazy(() => import('../components/authentication/UserAuthentication'))
 
 const MapPage = () => {
   const { currentUser } = useContext(AuthContext)
-  const { pins, SetPins, SetNewPlace } = useContext(LocationContext)
+  const { pins, SetPins, SetNewPlace, SetCurrentPlaceId } = useContext(LocationContext)
   const [viewport, setViewport] = useState({
     latitude: 6.927079,
     longitude: 79.861244,
@@ -90,6 +92,7 @@ const MapPage = () => {
     <div style={{ height: '100vh', width: '100%' }}>
       {/* Header containing search bar and add review button */}
       <div className="header">
+        <ThemeToggle />
         <div className="search-box">
           <input
             type="text"
@@ -140,16 +143,16 @@ const MapPage = () => {
         )}
 
 
+        <MapMarker
+          pins={pins}
+          currentUser={currentUser}
+          setCurrentPlaceId={SetCurrentPlaceId}
+        />
+
         {pins.map((p) => (
-          <React.Fragment key={p._id}>
-            {/* Retrieve all markers on Map */}
-            <MapMarker />
-            {/* Popup on Marker */}
-            <Suspense fallback={<Loader />}>
-              <MarkerPopup
-                p={p} />
-            </Suspense>
-          </React.Fragment>
+          <Suspense fallback={<Loader />} key={p._id}>
+            <MarkerPopup p={p} />
+          </Suspense>
         ))}
 
         {/* User popup creation */}

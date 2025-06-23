@@ -40,7 +40,7 @@ form {
   }
   
   .search-box {
-    background: white;
+    background: var(--white-color);
     padding: 10px 70px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -52,14 +52,14 @@ form {
     outline: none;
   }
   
-  .add-review-button {  
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
+  .add-review-button {
+      background: var(--blue-color);
+      color: var(--white-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
   }
   
   .add-review-button:hover {
@@ -78,8 +78,8 @@ form {
     list-style: none;
     padding: 0;
     margin: 0;
-    background: white;
-    border: 1px solid #ccc;
+    background: var(--white-color);
+    border: 1px solid var(--gray-color);
     max-height: 200px;
     overflow-y: auto;
     position: absolute;
@@ -94,6 +94,23 @@ form {
   }
   
   .suggestions-list li:hover {
-    background: #f0f0f0;
+    background: var(--gray-color);
+  }
+
+  .dark .mapboxgl-ctrl button {
+    background-color: var(--white-color);
+    color: var(--form-color);
+  }
+
+  .dark .search-box,
+  .dark .suggestions-list {
+    color: var(--form-color);
+  }
+
+  @media (max-width: 600px) {
+    .add-review-button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
   }
   
