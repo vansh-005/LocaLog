@@ -2,4 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
 @import '@shadcn/ui/styles.css';

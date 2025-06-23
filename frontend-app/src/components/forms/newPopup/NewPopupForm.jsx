@@ -33,7 +33,7 @@ const NewPopupForm = () => {
             SetRecentPinId(res.data._id)
             SetNewPlace(null)
         } catch (err) {
-            console.log("an error Occured")
+            console.error(err)
         }
     }
 

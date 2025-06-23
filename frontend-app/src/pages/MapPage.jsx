@@ -36,7 +36,7 @@ const MapPage = () => {
         const allPins = await apiRequest.get('/api/pins')
         SetPins(allPins.data)
       } catch (err) {
-        console.log(err)
+        console.error(err)
       }
     }
     getPins()
@@ -58,7 +58,7 @@ const MapPage = () => {
       )
       setSuggestions(response.data.features)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
