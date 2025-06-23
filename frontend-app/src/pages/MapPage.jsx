@@ -4,6 +4,7 @@ import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './mappage.css'
 import Loader from '../components/ui/Loader' //Loader for suspense
+import ThemeToggle from '../components/ui/ThemeToggle'
 import MyLocationIcon from '@mui/icons-material/MyLocation'
 import MapMarker from '../components/marker/MapMarker'
 import debounce from 'lodash.debounce' // Import debounce from lodash
@@ -89,6 +90,7 @@ const MapPage = () => {
     <div style={{ height: '100vh', width: '100%' }}>
       {/* Header containing search bar and add review button */}
       <div className="header">
+        <ThemeToggle />
         <div className="search-box">
           <input
             type="text"
