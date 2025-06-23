@@ -8,3 +8,5 @@
     font-family: 'Poppins', sans-serif;
   }
 }
+
+@import '@shadcn/ui/styles.css';
